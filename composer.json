@@ -1,6 +1,5 @@
 {
     "name": "hawksama/magento2-shopfinder-graphql",
-    "version": "1.0.0",
     "description": "Shopfinder GraphQL module for Magento 2",
     "type": "magento2-module",
     "authors": [
