@@ -1,0 +1,18 @@
+{
+    "hawksama_shopfinder": {
+        "column": {
+            "shop_id": true,
+            "name": true,
+            "identifier": true,
+            "country": true
+        },
+        "index": {
+            "HAWKSAMA_SHOPFINDER_NAME": true,
+            "HAWKSAMA_SHOPFINDER_COUNTRY": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "HAWKSAMA_SHOPFINDER_IDENTIFIER": true
+        }
+    }
+}

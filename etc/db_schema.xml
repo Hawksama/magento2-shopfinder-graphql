@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Alexandru-Manuel Carabus All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="hawksama_shopfinder" resource="default" engine="innodb" comment="Shop Finder">
+        <column xsi:type="int" name="shop_id" unsigned="true" nullable="false" identity="true"
+                comment="Shop ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255"
+                comment="Shop Name"/>
+        <column xsi:type="varchar" name="identifier" nullable="false" length="255"
+                comment="Shop Identifier"/>
+        <column xsi:type="varchar" name="country" nullable="false" length="2"
+                comment="Country Code"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="shop_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="HAWKSAMA_SHOPFINDER_IDENTIFIER">
+            <column name="identifier"/>
+        </constraint>
+        <index referenceId="HAWKSAMA_SHOPFINDER_NAME" indexType="btree">
+            <column name="name"/>
+        </index>
+        <index referenceId="HAWKSAMA_SHOPFINDER_COUNTRY" indexType="btree">
+            <column name="country"/>
+        </index>
+    </table>
+</schema>

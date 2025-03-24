@@ -1,0 +1,39 @@
+type Query {
+    shops: [Shop!]! @resolver(class: "Hawksama\\ShopfinderGraphQL\\Model\\Resolver\\Shops")
+    shopByIdentifier(identifier: String!): Shop @resolver(class: "Hawksama\\ShopfinderGraphQL\\Model\\Resolver\\ShopByIdentifier")
+}
+
+type Mutation {
+    createShop(input: ShopInput!): ShopOutput @resolver(class: "Hawksama\\ShopfinderGraphQL\\Model\\Resolver\\CreateShop")
+    updateShop(input: ShopUpdateInput!): ShopOutput @resolver(class: "Hawksama\\ShopfinderGraphQL\\Model\\Resolver\\UpdateShop")
+    deleteShop(id: Int!): DeleteShopOutput @resolver(class: "Hawksama\\ShopfinderGraphQL\\Model\\Resolver\\DeleteShop")
+}
+
+type Shop {
+    shop_id: Int!
+    name: String!
+    identifier: String!
+    country: String!
+}
+
+input ShopInput {
+    name: String!
+    identifier: String!
+    country: String!
+}
+
+input ShopUpdateInput {
+    shop_id: Int!
+    name: String
+    identifier: String
+    country: String
+}
+
+type ShopOutput {
+    shop: Shop!
+}
+
+type DeleteShopOutput {
+    success: Boolean!
+    message: String!
+}

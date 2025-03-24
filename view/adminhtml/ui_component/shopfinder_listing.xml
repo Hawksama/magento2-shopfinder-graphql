@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Alexandru-Manuel Carabus All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">shopfinder_listing.shopfinder_listing_data_source</item>
+            <item name="deps" xsi:type="string">shopfinder_listing.shopfinder_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New</label>
+            </button>
+        </buttons>
+        <spinner>shopfinder_listing_columns</spinner>
+        <deps>
+            <dep>shopfinder_listing.shopfinder_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="shopfinder_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">shop_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Hawksama_ShopfinderGraphQL::management</aclResource>
+        <dataProvider class="Hawksama\ShopfinderGraphQL\Ui\DataProvider\ShopfinderDataProvider" name="shopfinder_listing_data_source">
+            <settings>
+                <requestFieldName>shop_id</requestFieldName>
+                <primaryFieldName>shop_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="shopfinder_listing_columns">
+        <column name="shop_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+
+        <column name="name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Shop Name</label>
+                <dataType>text</dataType>
+            </settings>
+        </column>
+
+        <column name="identifier">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Identifier</label>
+                <dataType>text</dataType>
+            </settings>
+        </column>
+
+        <column name="country" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Hawksama\ShopfinderGraphQL\Model\Source\Country"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Country</label>
+            </settings>
+        </column>
+
+        <actionsColumn name="actions" class="Hawksama\ShopfinderGraphQL\Ui\Component\Listing\Column\ShopfinderBlockActions">
+            <settings>
+                <indexField>shop_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

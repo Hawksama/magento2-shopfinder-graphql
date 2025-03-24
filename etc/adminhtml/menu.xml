@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Alexandru-Manuel Carabus All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Hawksama_ShopfinderGraphQL::shopfinder"
+             title="Shopfinder"
+             translate="title"
+             module="Hawksama_ShopfinderGraphQL"
+             sortOrder="50"
+             parent="Magento_Backend::content"
+             action="hawksama/shopfinder/index"
+             resource="Hawksama_ShopfinderGraphQL::management"/>
+    </menu>
+</config>
